@@ -386,6 +386,31 @@ router.get('/data-step-3', function(req, res) {
             <h3>Merge two streams</h3>
           </section>
           <section>
+            <h3>Ask for merged stream</h3>
+            <pre>
+              <code class="javascript" data-trim>
+/* server */
+var points = require('./points');
+
+router.get('/data-step-4', function(req, res) {
+
+  var pointsstream = points.getStaticMergedStream()
+        .map(json.stringify)
+        .intersperse(',');
+
+  highland([
+      '[',
+      pointstream,
+      ']'
+    ])
+    .invoke('split', [''])
+    .pipe(res);
+
+});
+              </code>
+            </pre>
+          </section>
+          <section>
             <h3>Make a stream for each point</h3>
             <pre>
               <code class="javascript" data-trim>
