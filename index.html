@@ -113,6 +113,11 @@
               <li class="fragment">Multiple data sources</li>
               <li class="fragment">Huge response</li>
             </ul>
+            <pre class="fragment">
+              <code class="bash" data-trim>
+cat data/cat-points.json | jq '.pxif.pixels' | less
+              </code>
+            </pre>
           </section>
           <section>
             <h3>Bad client connection</h3>
@@ -179,6 +184,13 @@ router.get('/data-step-1', function(req, res) {
             </pre>
           </section>
           <section>
+            <pre class="fragment">
+              <code class="javascript" data-trim>
+curl -s localhost:3000/data-step-1 | jq .
+              </code>
+            </pre>
+          </section>
+          <section>
             <h3>Ask for the data</h3>
             <pre>
               <code class="javascript" data-trim>
@@ -216,6 +228,9 @@ oboe('http://localhost:3000/data-step-1')
   });
               </code>
             </pre>
+          </section>
+          <section>
+            <a href="http://localhost:3000/step-1">http://localhost:3000/step-1</a>
           </section>
         </section>
         <section>
@@ -270,6 +285,14 @@ router.get('/data-step-2', function(req, res) {
               </code>
             </pre>
           </section>
+          <section>
+            <pre class="fragment">
+              <code class="javascript" data-trim>
+curl -s localhost:3000/data-step-2 | jq .
+              </code>
+            </pre>
+          </section>
+
         </section>
         <section>
           <section>
@@ -380,6 +403,13 @@ router.get('/data-step-3', function(req, res) {
               </code>
             </pre>
           </section>
+          <section>
+            <pre class="fragment">
+              <code class="javascript" data-trim>
+curl -s localhost:3000/data-step-3 | jq .
+              </code>
+            </pre>
+          </section>
         </section>
         <section>
           <section>
@@ -458,6 +488,13 @@ function getStaticMergedStream(){
     ])
     .merge();
 }
+              </code>
+            </pre>
+          </section>
+          <section>
+            <pre class="fragment">
+              <code class="javascript" data-trim>
+curl -s localhost:3000/data-step-4 | jq .
               </code>
             </pre>
           </section>
@@ -547,6 +584,9 @@ function convertToPointStream(sourceStream) {
 }
               </code>
             </pre>
+          </section>
+          <section>
+            <a href="http://localhost:3000/step-5">http://localhost:3000/step-5</a>
           </section>
         </section>
         <section>
@@ -640,6 +680,9 @@ function getDataStream() {
 }
               </code>
             </pre>
+          </section>
+          <section>
+            <a href="http://localhost:3000/step-6">http://localhost:3000/step-6</a>
           </section>
         </section>
         <section>
