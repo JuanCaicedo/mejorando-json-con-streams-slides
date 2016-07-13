@@ -127,7 +127,7 @@
 /* server */
 router.get('/data-fs-async', function(req, res) {
 
-  var catPath = path.join(__dirname, '../data/cat-points.json');
+  var catPath = 'filePath';
 
   fs.readFile(catPath, function(err, data){
     res.send(data);
@@ -198,7 +198,7 @@ oboe('http://localhost:3000/data-fs-async')
 /* server */
 router.get('/data-basic', function(req, res) {
 
-  var catPath = path.join(__dirname, '../data/cat-points.json');
+  var catPath = 'filePath';
 
   fs.readFile(catPath, function(err, data){
     res.send(data);
