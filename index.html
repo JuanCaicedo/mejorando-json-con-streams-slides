@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Better JSON through streams</title>
+    <title>Mejorando JSON con streams</title>
 
     <meta name="description" content="">
     <meta name="author" content="Juan Caicedo">
@@ -41,11 +41,11 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h1>Better JSON through streams</h1>
+          <h1>Mejorando JSON con streams</h1>
         </section>
 
         <section>
-          <h2>Who am I?</h2>
+          <h2>Quién soy yo?</h2>
           <div>
             <div style="display:inline-block">
               <img class="image" style="width:400px" src="images/juan-caicedo.jpg"></img>
@@ -57,14 +57,7 @@
               <div>
                 <img src="images/spanishdict.png" style="width:300px"></img>
               </div>
-              <div>
-                <a href="https://github.com/JuanCaicedo">github.com/JuanCaicedo</a>
-              </div>
-              <div>
-                <a href="http://www.meetup.com/node-dc/">meetup.com/node-dc</a>
-              </div>
-              <div>
-                <a href="http://nodeschool.io/washingtondc/">nodeschool.io/washingtondc</a>
+              <div style="padding-bottom: 80px;">
               </div>
               <br/>
             </div>
@@ -72,12 +65,12 @@
         </section>
 
         <section>
-          <h2>Difficulties</h2>
+          <h2>Dificultades</h2>
           <ul>
-            <li class="fragment"> Slow server response </li>
-            <li class="fragment"> Coupled responses </li>
-            <li class="fragment"> Big AJAX slow and brittle </li>
-            <li class="fragment"> Multiple AJAX = complexity </li>
+            <li class="fragment"> Respuesta lenta del servidor </li>
+            <li class="fragment"> Partes directamente conectadas </li>
+            <li class="fragment"> AJAX grande es frágil </li>
+            <li class="fragment"> AJAX multiple es complejo </li>
           </ul>
         </section>
 
@@ -86,16 +79,16 @@
         </section>
 
         <section>
-          <h2>Unix streams</h2>
+          <h2>Streams de Unix</h2>
           <ul>
-            <li class="fragment">New-line separated text</li>
-            <li class="fragment">Work with single data points</li>
-            <li class="fragment">Collection of data over time</li>
+            <li class="fragment">Texto separado por lineas</li>
+            <li class="fragment">Cada operacion toma un dato</li>
+            <li class="fragment">Colección de datos a través del tiempo</li>
           </ul>
         </section>
 
         <section>
-          <h2>Javascript libraries</h2>
+          <h2>Librerias de javascript</h2>
           <ul>
             <li>Oboe.js</li>
             <li>Highland.js</li>
@@ -103,25 +96,25 @@
         </section>
 
         <section>
-          <h2>Three streaming interfaces</h2>
+          <h2>Tres interfaces con streams</h2>
           <ul>
-            <li class="fragment">Requesting data</li>
-            <li class="fragment">Responding with data</li>
-            <li class="fragment">Transfering within application</li>
+            <li class="fragment">Enquesta de datos</li>
+            <li class="fragment">Respuesta con datos</li>
+            <li class="fragment">Transferir dentro de la aplicatión</li>
           </ul>
         </section>
 
         <section>
           <section>
-            <h2>Requesting data</h2>
+            <h2>Enquesta de datos</h2>
           </section>
 
           <section>
-            <a href="http://localhost:3000/just-html">http://localhost:3000/just-html</a>
+            <a href="http://oboe-highland.herokuapp.com/just-html">http://oboe-highland.herokuapp.com/just-html</a>
           </section>
 
           <section>
-            <h3>Basic data endpoint</h3>
+            <h3>Datos básicos</h3>
             <pre>
               <code class="javascript" data-trim>
 /* server */
@@ -140,25 +133,25 @@ router.get('/data-fs-async', function(req, res) {
           <section>
             <pre>
               <code class="bash" data-trim>
-curl -s localhost:3000/data-fs-async | jq . | less
+curl -s oboe-highland.herokuapp.com/data-fs-async | jq . | less
               </code>
             </pre>
           </section>
           <section>
-            <h3>Ask for the data</h3>
+            <h3>Pedir los datos</h3>
             <pre>
               <code class="javascript" data-trim>
 /* client */
-oboe('http://localhost:3000/data-fs-async')
+oboe('http://oboe-highland.herokuapp.com/data-fs-async')
               </code>
             </pre>
           </section>
           <section>
-            <h3>Parse out each point</h3>
+            <h3>Reconocer cada punto</h3>
             <pre>
               <code class="javascript" data-trim>
 /* client */
-oboe('http://localhost:3000/data-fs-async')
+oboe('http://oboe-highland.herokuapp.com/data-fs-async')
   .node('{x y color}', function(point) {
 
     // code using point
@@ -168,11 +161,11 @@ oboe('http://localhost:3000/data-fs-async')
             </pre>
           </section>
           <section>
-            <h3>Use each point</h3>
+            <h3>Usar cada punto</h3>
             <pre>
               <code class="javascript" data-trim>
 /* client */
-oboe('http://localhost:3000/data-fs-async')
+oboe('http://oboe-highland.herokuapp.com/data-fs-async')
   .node('{x y color}', function(point) {
 
     var grid = document.querySelector('.grid');
@@ -184,19 +177,19 @@ oboe('http://localhost:3000/data-fs-async')
             </pre>
           </section>
           <section>
-            <a href="http://localhost:3000/fs-async">http://localhost:3000/fs-async</a>
+            <a href="http://oboe-highland.herokuapp.com/fs-async">http://oboe-highland.herokuapp.com/fs-async</a>
           </section>
         </section>
         <section>
           <section>
-            <h2>Sending a streamed response</h2>
+            <h2>Mandar una respuesta como stream</h2>
           </section>
           <section>
-            <h3>Basic data endpoint</h3>
+            <h3>Datos básicos</h3>
             <pre>
               <code class="javascript" data-trim>
 /* server */
-router.get('/data-basic', function(req, res) {
+router.get('/data-fs-async', function(req, res) {
 
   var catPath = 'filePath';
 
@@ -209,7 +202,7 @@ router.get('/data-basic', function(req, res) {
             </pre>
           </section>
           <section>
-            <h3>Read as stream instead</h3>
+            <h3>Leer como un stream</h3>
             <pre>
               <code class="javascript" data-trim>
 /* server */
@@ -226,17 +219,17 @@ router.get('/data-fs-read-stream', function(req, res) {
         </section>
         <section>
           <section>
-            <h2>Streams on the server</h2>
+            <h2>Comunicarse con streams en el servidor</h2>
           </section>
           <section>
-            <h3>Two data sources</h3>
+            <h3>Dos fuentes de datos</h3>
             <ol>
-              <li>File on the server</li>
-              <li>File over the network</li>
+              <li>Archivo en el servidor</li>
+              <li>Archivo a través del network</li>
             </ol>
           </section>
           <section>
-            <h3>Get both as streams</h3>
+            <h3>Los dos como streams</h3>
             <pre class="fragment">
               <code class="javascript" data-trim>
 function getFullStream() {
@@ -258,7 +251,7 @@ function getFullStream() {
             </pre>
           </section>
           <section>
-            <h3>Convert strings to points</h3>
+            <h3>Convertir strings a puntos</h3>
             <pre class="fragment">
               <code class="javascript" data-trim>
 function getPointStream(sourceStream) {
@@ -282,7 +275,7 @@ function getPointStream(sourceStream) {
             </pre>
           </section>
           <section>
-            <h3>Organize and send</h3>
+            <h3>Organizar y mandar</h3>
             <pre class="fragment">
               <code class="javascript" data-trim>
 router.get('/full-data', function(req, res) {
@@ -304,15 +297,14 @@ router.get('/full-data', function(req, res) {
             </pre>
           </section>
           <section>
-            <a href="http://localhost:3000/">http://localhost:3000/</a>
+            <a href="http://oboe-highland.herokuapp.com/">http://oboe-highland.herokuapp.com/</a>
           </section>
         </section>
         <section>
-          <h2>All done!</h2>
+          <h2>Listo!</h2>
           <ul>
-            <li>Demo: <a href="http://oboe-highland.herokuapp.com/">oboe-highland.herokuapp.com/</a></li>
+            <li>Demonstración: <a href="http://oboe-highland.herokuapp.com/">oboe-highland.herokuapp.com/</a></li>
             <li>Blog Post: <a href="http://engineering.curiositymedia.com/blog/better-json-through-streams">engineering.curiositymedia.com/blog/better-json-through-streams/</a></li>
-            <li>This presentation: <a href="http://juancaicedo.github.io/better-json-through-streams-slides">juancaicedo.github.io/better-json-through-streams-slides/</a></li>
           </ul>
         </section>
         <div class="footer">
